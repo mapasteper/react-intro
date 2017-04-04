@@ -1,7 +1,27 @@
 import React, { Component } from 'react';
+import data from 'data';
+import Table from 'components/Table/table';
+import Search from 'components/search/search';
+import ScrollToTop from 'react-scroll-up';
 
 class Homepage extends Component {
-  render () {  
+  constructor (props) {
+      super(props);
+
+      this.state = {
+        searchFieldValue: ''
+      };
+
+      this.searchValueEntered = this.searchValueEntered.bind(this);
+    }
+
+    searchValueEntered (value) {
+      this.setState({
+        searchFieldValue: value
+      });
+    }
+
+  render () {
     return (
       <div className="container-fluid">
         <div className="row mb-3">
@@ -11,12 +31,12 @@ class Homepage extends Component {
         </div>
         <div className="row">
           <div className="col">
-            {/* some controls here later? */}
+            <Search searchValueEntered={this.searchValueEntered} />
           </div>
         </div>
         <div className="row">
           <div className="col">
-            [table goes here]
+            <Table mpData={data} searchFieldValue={this.state.searchFieldValue} />
           </div>
         </div>
         <div className="row mt-3">
@@ -24,6 +44,9 @@ class Homepage extends Component {
             <small className="font-italic">Source: Office of the Clerk/Parliamentary Service. Licensed by the Clerk of the House of Representatives and/or the Parliamentary Corporation on behalf of Parliamentary Service for re-use under the Creative Commons Attribution 4.0 International licence. Full licence available at <a href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a>. Data last updated <a href="https://www.parliament.nz/en/get-involved/have-your-say/contact-an-mp/">21st December 2016.</a></small>
           </div>
         </div>
+        <ScrollToTop showUnder={560}>
+          <button className="btn btn-primary">Back to top</button>
+        </ScrollToTop>
       </div>
     );
   }
