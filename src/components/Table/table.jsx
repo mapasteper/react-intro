@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 
 class Table extends Component {
   renderRows () {
-    let rows = [];
+    let rows = [''];
 
     this.props.mpData.forEach((mp, index) => {
       const fulltext = Object.values(mp).join().toLowerCase();
@@ -31,7 +31,6 @@ class Table extends Component {
 }
 render(){
   const rows = this.renderRows();
-
 
     return (
       <table className="table">
